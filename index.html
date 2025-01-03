@@ -1,61 +1,73 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pojedynek Detektywów - Gra detektywistyczna online">
     <title>Pojedynek Detektywów</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header class="header">
-        <h1>Pojedynek Detektywów</h1>
+        <h1 id="storyTitle">Pojedynek Detektywów</h1>
     </header>
 
     <main class="main">
-        <section class="progress-section">
-            <div class="progress-info">
-                <span>Twoje śledztwo: <span id="cluesFound">0</span>/10</span>
-                <span>Rywal: <span id="rivalClues">0</span>/10</span>
-            </div>
-            <div class="progress-bar-container">
-                <div class="progress" id="playerProgress"></div>
-                <div class="rival-progress" id="rivalProgress"></div>
-                <div class="rival-label">Rywal</div>
+        <!-- Przycisk Start -->
+        <button id="startButton" class="start-button" onclick="initializeGame()">
+            <div id="startGameText">Rozpocznij grę</div>
+            <div id="loadingSpinner" class="loading-spinner" style="display: none; margin-top: -9px;"></div>
+        </button>
+
+        <!-- Sekcja opisu -->
+        <section class="dialogue-section">
+            <div id="descriptionBox" class="dialogue-box">
+                <p class="default-message">Kliknij „Rozpocznij grę”, aby rozpocząć śledztwo.</p>
             </div>
         </section>
-
-        <section class="characters-section">
-            <div class="characters">
-                <div class="character" onclick="interact('Asystentka', 'Ostatnio widziałam właściciela tutaj w kuchni.')">
-                    <h3>Asystentka</h3>
-                </div>
-                <div class="character" onclick="interact('Żona', 'Byłam w salonie z gośćmi przez całą noc.')">
-                    <h3>Żona</h3>
-                </div>
-                <div class="character" onclick="interact('Ogrodnik', 'Spałem w swojej kwaterze, nie miałem nic wspólnego ze sprawą.')">
-                    <h3>Ogrodnik</h3>
-                </div>
-            </div>
-        </section>
-
+        
+        <!-- Sekcja dialogów -->
         <section class="dialogue-section">
             <div id="dialogueBox" class="dialogue-box">
-                <p class="default-message">Kliknij na postać, aby zobaczyć ich wypowiedź.</p>
+                <p class="default-message">Kliknij „Rozpocznij grę”, aby rozpocząć śledztwo.</p>
             </div>
         </section>
+
+        <!-- Sekcja postaci -->
+        <section class="characters-section">
+            <!-- <h2 class="characters-title">Postacie</h2> -->
+            <div class="characters"></div>
+        </section>
+
+        <!-- Niewidoczny kontener na rozwiązanie -->
+        <div id="hiddenSolution" style="display: none;"></div>
+
+        <!-- Sekcja mapy dworku
+        <section class="map-section">
+            <h2 class="map-title">Mapa dworku</h2>
+            <div class="map-grid">
+                <div class="map-location" id="kitchen" onclick="exploreLocation('kitchen')">Kuchnia</div>
+                <div class="map-location" id="livingRoom" onclick="exploreLocation('livingRoom')">Salon</div>
+                <div class="map-location" id="study" onclick="exploreLocation('study')">Gabinet</div>
+                <div class="map-location" id="garden" onclick="exploreLocation('garden')">Ogród</div>
+                <div class="map-location" id="attic" onclick="exploreLocation('attic')">Strych</div>
+                <div class="map-location disabled" id="basement">Piwnica (Zablokowane)</div>
+            </div>
+        </section> -->
     </main>
 
     <div class="interaction">
-        <input type="text" id="playerInput" placeholder="Zadaj pytanie...">
-        <button id="sendButton" onclick="sendMessage()">Wyślij</button>
+        <input type="text" id="playerInput" placeholder="Zadaj pytanie..." disabled>
+        <button id="sendButton" onclick="sendMessage()" disabled>Wyślij</button>
     </div>
 
     <footer class="footer">
-        &copy; 2025 Pojedynek Detektywów. Wszystkie prawa zastrzeżone.
+        &copy; 2025 Pojedynek Detektywów. Wszystkie prawa zastrzeżone. Powered by Gemini.
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>
